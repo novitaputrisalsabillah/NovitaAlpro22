@@ -10,7 +10,7 @@ public class siakad {
         System.out.print("NIM = ");
         String nim = scan.next();
         scan.nextLine();
-        System.out.print("Nama = ");
+        System.out.print("Nama = ");   
         String nama = scan.nextLine();
         mahasiswa[jumlahData] = new Mahasiswa();
         mahasiswa[jumlahData].setNim(nim);
@@ -26,7 +26,30 @@ public class siakad {
             i++;
         }
     }
-
+    public static void urutkanData() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Pilih algoritma pengurutan");
+        System.out.println("1. EXCHANGE SORT");
+        System.out.print("Pilih algoritma = ");
+        int algo = scanner.nextInt();
+        switch (algo) {
+            case 1: {
+                exchangeSort();
+                break;
+            }
+        }
+    }
+    public static void exchangeSort() {
+        for (int x = 0; x<jumlahData; x++) {
+            for (int y = x+1; y<jumlahData; y++) {
+                if (mahasiswa[x].getNim().compareTo(mahasiswa[y].getNim())>=1) {
+                    Mahasiswa temp = mahasiswa[x];
+                    mahasiswa[x] = mahasiswa[y];
+                    mahasiswa[y] = temp;
+                }
+            }
+        }
+    }
     public static void main(String[] args) {
         int option;
         siakad siakad = new siakad();
@@ -35,8 +58,9 @@ public class siakad {
             System.out.println("Menu Siakad");
             System.out.println("1. Tambah Data");
             System.out.println("2. Lihat Data");
-            System.out.println("3. Keluar");
-            System.out.print("Pilih menu = ");
+            System.out.println("3. Urutkan Data");
+            System.out.println("4. Keluar");
+            System.out.print("Pilih menu = "); 
             option = scan.nextInt();
             System.out.println();
             switch (option) {
@@ -47,8 +71,12 @@ public class siakad {
                     tampilData();
                     break;
                 case 3:
-                    System.out.println("Terimakasih sudah mengunjung siakad");
-                    System.exit(0);
+                    urutkanData();
+                    break;
+                case 4:
+                System.out.println("Terimakasih sudah mengunjung siakad");
+                System.exit(0);
+
             }
             if (option > 3) {
                 System.out.println("Input anda tidak sesuai, mohon ulangi lagi. \n");
